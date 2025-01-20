@@ -3,6 +3,7 @@ import pygame
 
 class PhysicsEntity:
     def __init__(self, game, e_type, pos, size):
+        print("test")
         self.game = game
         self.type = e_type
         self.pos = list(pos)
