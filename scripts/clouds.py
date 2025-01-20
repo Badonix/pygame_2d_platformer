@@ -30,8 +30,7 @@ class Cloud:
 class Clouds:
     def __init__(self, cloud_images, count=16):
         self.clouds = []
-
-        for i in range(count):
+        for _ in range(count):
             self.clouds.append(
                 Cloud(
                     (random.random() * 99999, random.random() * 99999),
