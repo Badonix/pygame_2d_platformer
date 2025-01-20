@@ -42,6 +42,7 @@ class Game:
         while True:
             self.display.fill((14, 219, 248))
 
+            # If we dont divide by 30 it wont be *smooth* animation
             self.scroll[0] += (
                 self.player.rect().centerx
                 - self.display.get_width() / 2
