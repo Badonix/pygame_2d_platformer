@@ -1,8 +1,9 @@
 import pygame
 import sys
 
+from scripts import tilemap
 from scripts.utils import load_image, Animation, load_images
-from scripts.entities import PhysicsEntity, Player
+from scripts.entities import Player
 
 from scripts.tilemap import Tilemap
 
@@ -44,7 +45,7 @@ class Game:
         }
         self.clouds = Clouds(self.assets["clouds"], count=16)
         self.tilemap = Tilemap(self, tile_size=16)
-        print(self.assets)
+        self.tilemap.load("map.json")
 
         self.player = Player(self, (50, 50), (8, 15))
 
@@ -58,6 +59,7 @@ class Game:
             self.clouds.render(self.display, offset=render_scroll)
 
             # If we dont divide by 30 it wont be *smooth* animation
+            self.tilemap.render(self.display, offset=render_scroll)
             self.scroll[0] += (
                 self.player.rect().centerx
                 - self.display.get_width() / 2
@@ -71,7 +73,6 @@ class Game:
 
             self.player.update(self.tilemap, (self.movement[1] - self.movement[0], 0))
             self.player.render(self.display, offset=render_scroll)
-            self.tilemap.render(self.display, offset=render_scroll)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
